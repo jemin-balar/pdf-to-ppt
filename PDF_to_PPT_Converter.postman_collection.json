@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "pdf-to-ppt-converter",
+		"name": "PDF to PowerPoint Converter API",
+		"description": "A comprehensive API collection for converting PDFs to PowerPoint presentations with multiple conversion methods.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Check if the API is running and get the number of active conversion jobs."
+			},
+			"response": []
+		},
+		{
+			"name": "Main Page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Access the main page of the application."
+			},
+			"response": []
+		},
+		{
+			"name": "Convert PDF from URL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pdf_url\": \"https://example.com/sample.pdf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/convert",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"convert"
+					]
+				},
+				"description": "Convert a PDF from a URL to PowerPoint format. Returns a job ID for tracking the conversion status."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pdf_url\": \"https://example.com/sample.pdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/convert",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"convert"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"status_url\": \"/status/123e4567-e89b-12d3-a456-426614174000\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Upload and Convert PDF File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": [],
+							"description": "Select a PDF file to upload and convert"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/upload-convert",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"upload-convert"
+					]
+				},
+				"description": "Upload a PDF file directly and convert it to PowerPoint format. Maximum file size is 100MB."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/upload-convert",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"upload-convert"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"status_url\": \"/status/123e4567-e89b-12d3-a456-426614174000\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Convert Local PDF File",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pdf_path\": \"/path/to/your/file.pdf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/convert-local",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"convert-local"
+					]
+				},
+				"description": "Convert a PDF file from a local file path to PowerPoint format. The file must exist on the server."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pdf_path\": \"/path/to/your/file.pdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/convert-local",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"convert-local"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"status_url\": \"/status/123e4567-e89b-12d3-a456-426614174000\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Check Conversion Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/status/{{job_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"status",
+						"{{job_id}}"
+					]
+				},
+				"description": "Check the status of a conversion job. Use the job_id returned from any conversion endpoint."
+			},
+			"response": [
+				{
+					"name": "Queued Status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/status/123e4567-e89b-12d3-a456-426614174000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"status",
+								"123e4567-e89b-12d3-a456-426614174000"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"status\": \"queued\"\n}"
+				},
+				{
+					"name": "Downloading Status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/status/123e4567-e89b-12d3-a456-426614174000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"status",
+								"123e4567-e89b-12d3-a456-426614174000"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"status\": \"downloading\"\n}"
+				},
+				{
+					"name": "Converting Status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/status/123e4567-e89b-12d3-a456-426614174000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"status",
+								"123e4567-e89b-12d3-a456-426614174000"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"status\": \"converting\"\n}"
+				},
+				{
+					"name": "Completed Status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/status/123e4567-e89b-12d3-a456-426614174000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"status",
+								"123e4567-e89b-12d3-a456-426614174000"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"status\": \"completed\",\n    \"download_url\": \"/download/123e4567-e89b-12d3-a456-426614174000\"\n}"
+				},
+				{
+					"name": "Failed Status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/status/123e4567-e89b-12d3-a456-426614174000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"status",
+								"123e4567-e89b-12d3-a456-426614174000"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"status\": \"failed\",\n    \"error\": \"Conversion failed: Invalid PDF format\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Download Converted PowerPoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/download/{{job_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"download",
+						"{{job_id}}"
+					]
+				},
+				"description": "Download the converted PowerPoint file. Only works when the conversion status is 'completed'."
+			},
+			"response": [
+				{
+					"name": "Success - File Download",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/download/123e4567-e89b-12d3-a456-426614174000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"download",
+								"123e4567-e89b-12d3-a456-426614174000"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+						},
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=converted_123e4567-e89b-12d3-a456-426614174000.pptx"
+						}
+					],
+					"cookie": [],
+					"body": "Binary file content (PowerPoint presentation)"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5001",
+			"type": "string"
+		},
+		{
+			"key": "job_id",
+			"value": "123e4567-e89b-12d3-a456-426614174000",
+			"type": "string",
+			"description": "Replace with actual job_id from conversion responses"
+		}
+	]
+}
